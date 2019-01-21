@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Student } from '../../shared/student.model';
+import { Recipe } from '../../shared/recipe.model';
+import {Ingredient} from '../../shared/ingredients.model';
 
 @Component({
-  // select: '[app-server]',
   selector: 'app-server',
   templateUrl: './server.component.html', // you can put real html here
   styleUrls: ['./server.component.css']
@@ -10,37 +10,28 @@ import { Student } from '../../shared/student.model';
 
 
 export class ServerComponent {
-    serverId = 10;
-    serverStatus = 'offLine';
-    counter = 0;
-    isLogin = false;
-    userName: string;
-    students: Student[] = [new Student('Bill Gates', 'Computer Science'),
+    isMatch = true;
+    ingredient: string;
+    recipeName: string;
+
+
+
+/*    students: Student[] = [new Student('Bill Gates', 'Computer Science'),
                            new Student('Steve Jobs', 'Computer Science'),
-                           new Student('Elon Musk', 'Computer Science')];
+                           new Student('Elon Musk', 'Computer Science')];*/
 
-    getServerStatus() {
-      return this.serverStatus;
+    usrInput = {'egg' : 0, 'milk' : 0, 'flour': 0};
+
+    recipes: Recipe[] = [ new Recipe('Crepe Cake', 'egg', 'milk', 'flour'),
+                          new Recipe('Pancake', Ingredient[0], Ingredient[1], Ingredient[2])];
+
+    counterPlus(ingredient) {
+     this.usrInput[ingredient] ++;
     }
 
-    counterPlus() {
-     this.counter ++;
+    resetCounter(ingredient) {
+      this.usrInput[ingredient] = 0;
     }
 
-    resetCounter() {
-      this.counter = 0;
-    }
-
-    login() {
-      this.isLogin = true;
-    }
-
-    signOut() {
-      this.isLogin = false;
-    }
-
-    // Event Binding
-    onUpdateUserName(event: Event) {
-      this.userName = (<HTMLInputElement>event.target).value;
-    }
 }
+
